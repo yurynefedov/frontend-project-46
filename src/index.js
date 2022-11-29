@@ -20,15 +20,23 @@ const getDiffData = (filepath1, filepath2) => {
 
     switch (true) {
       case (!_.has(data1, key) && _.has(data2, key)):
+
         return { key, value: data2[key], status: 'added' };
+
       case (_.has(data1, key) && !_.has(data2, key)):
+
         return { key, value: data1[key], status: 'deleted' };
+
       case (_.has(data1, key) && _.has(data2, key)):
+
         if (initialValue === amendedValue) {
           return { key, value: initialValue, status: 'unmodified' };
-        } return {
+        }
+
+        return {
           key, initialValue, amendedValue, status: 'modified',
         };
+
       default:
         throw new Error(`Unknown state of property '${key}'`);
     }
@@ -65,7 +73,7 @@ const genDiff = (filepath1, filepath2) => {
         result.push(`  + ${key}: ${amendedValue}`);
         break;
       default:
-        throw new Error(`Unknown state of property '${key}'`);
+        throw new Error(`Unknown status for property '${key}'`);
     }
   });
 
