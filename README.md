@@ -1,5 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/yurynefedov/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/yurynefedov/frontend-project-46/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4b7cddd0c9831da76551/maintainability)](https://codeclimate.com/github/yurynefedov/frontend-project-46/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4b7cddd0c9831da76551/test_coverage)](https://codeclimate.com/github/yurynefedov/frontend-project-46/test_coverage)
 
 # "Difference Generator"
 Difference Generator is a console utility that generates differences between configuration of two JSON or YML files. The output might be customized using --format option.
