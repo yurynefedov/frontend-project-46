@@ -1,4 +1,4 @@
-const expetedDataNested = `{
+const expectedDataNested = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -43,4 +43,4 @@ const expetedDataNested = `{
     }
 }`;
 
-export default expetedDataNested;
+export default expectedDataNested;
