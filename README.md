@@ -1,6 +1,5 @@
-### Hexlet tests and linter status:
 [![Actions Status](https://github.com/yurynefedov/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/yurynefedov/frontend-project-46/actions)
-[![Test and Linter](https://github.com/yurynefedov/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/yurynefedov/frontend-project-46/actions/workflows/nodejs.yml)
+[![Tests and Linter](https://github.com/yurynefedov/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/yurynefedov/frontend-project-46/actions/workflows/nodejs.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4b7cddd0c9831da76551/maintainability)](https://codeclimate.com/github/yurynefedov/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4b7cddd0c9831da76551/test_coverage)](https://codeclimate.com/github/yurynefedov/frontend-project-46/test_coverage)
 
@@ -39,6 +38,10 @@ npm link
 
 ## Demos
 
-Comparing to plain json files:
+Comparing two plain json files:
 
 [![asciicast](https://asciinema.org/a/541298.svg)](https://asciinema.org/a/541298)
+
+Comparing two plain yaml files:
+
+[![asciicast](https://asciinema.org/a/541826.svg)](https://asciinema.org/a/541826)
