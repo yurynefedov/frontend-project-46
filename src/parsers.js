@@ -14,7 +14,7 @@ const parseFileData = (filepath) => {
     case '.yaml':
       return yaml.load(readFileData(filepath));
     default:
-      throw new Error(`Sorry, the ${extention} extention is not supported`);
+      throw new Error(`Sorry, the '${extention}' extention is not supported`);
   }
 };
 

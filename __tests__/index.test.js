@@ -23,20 +23,20 @@ const yamlNested2 = getPathToFixturesFiles('nested2.yaml');
 
 test('Get difference of two plain json files', () => {
   const receivedData = genDiff(jsonFile1, jsonFile2);
-  expect(receivedData).toEqual(expectedDataNested);
+  expect(receivedData).toEqual(expectedDataPlain);
 });
 
 test('Get difference of two plain yaml files', () => {
   const receivedData = genDiff(yamlFile1, yamlFile2);
-  expect(receivedData).toEqual(expectedDataNested);
+  expect(receivedData).toEqual(expectedDataPlain);
 });
 
 test('Get difference of two nested json files', () => {
   const receivedData = genDiff(jsonNested1, jsonNested2);
-  expect(receivedData).toEqual(expectedDataPlain);
+  expect(receivedData).toEqual(expectedDataNested);
 });
 
 test('Get difference of two nested yaml files', () => {
   const receivedData = genDiff(yamlNested1, yamlNested2);
-  expect(receivedData).toEqual(expectedDataPlain);
+  expect(receivedData).toEqual(expectedDataNested);
 });
