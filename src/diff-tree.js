@@ -12,11 +12,11 @@ const buildDiffTree = (data1, data2) => {
 
     switch (true) {
       case !_.has(data1, key) && _.has(data2, key):
+
         return { key, value: data2[key], status: 'added' };
-
       case _.has(data1, key) && !_.has(data2, key):
-        return { key, value: data1[key], status: 'deleted' };
 
+        return { key, value: data1[key], status: 'deleted' };
       case _.has(data1, key) && _.has(data2, key):
         if (initialValue === amendedValue) {
           return { key, value: initialValue, status: 'unmodified' };
@@ -29,6 +29,9 @@ const buildDiffTree = (data1, data2) => {
           status: 'modified',
         };
 
+      case _.isObject(initialValue) && _.isObject(amendedValue):
+
+        return { key, children: buildDiffTree(initialValue, amendedValue), status: 'nested' };
       default:
         throw new Error(`Unknown state of property '${key}'`);
     }
