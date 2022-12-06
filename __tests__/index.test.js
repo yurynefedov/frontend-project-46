@@ -1,8 +1,9 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
-import expectedDataPlain from '../__fixtures__/test-data/plain-expected.js';
-import expectedDataNested from '../__fixtures__/test-data/nested-expected.js';
+import expectedData from '../__fixtures__/test-data/expected.js';
+import expectedDataStylish from '../__fixtures__/test-data/nested/expected-stylish.js';
+import expectedDataPlain from '../__fixtures__/test-data/nested/expected-plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,20 +24,30 @@ const yamlNested2 = getPathToFixturesFiles('nested2.yaml');
 
 test('Get difference of two plain json files', () => {
   const receivedData = genDiff(jsonFile1, jsonFile2);
-  expect(receivedData).toEqual(expectedDataPlain);
+  expect(receivedData).toEqual(expectedData);
 });
 
 test('Get difference of two plain yaml files', () => {
   const receivedData = genDiff(yamlFile1, yamlFile2);
+  expect(receivedData).toEqual(expectedData);
+});
+
+test('Get difference of two nested json files, stylish format', () => {
+  const receivedData = genDiff(jsonNested1, jsonNested2, 'stylish');
+  expect(receivedData).toEqual(expectedDataStylish);
+});
+
+test('Get difference of two nested yaml files, stylish format', () => {
+  const receivedData = genDiff(yamlNested1, yamlNested2, 'stylish');
+  expect(receivedData).toEqual(expectedDataStylish);
+});
+
+test('Get difference of two nested json files, plain format', () => {
+  const receivedData = genDiff(jsonNested1, jsonNested2, 'plain');
   expect(receivedData).toEqual(expectedDataPlain);
 });
 
-test('Get difference of two nested json files', () => {
-  const receivedData = genDiff(jsonNested1, jsonNested2);
-  expect(receivedData).toEqual(expectedDataNested);
-});
-
-test('Get difference of two nested yaml files', () => {
-  const receivedData = genDiff(yamlNested1, yamlNested2);
-  expect(receivedData).toEqual(expectedDataNested);
+test('Get difference of two nested yaml files, plain format', () => {
+  const receivedData = genDiff(yamlNested1, yamlNested2, 'plain');
+  expect(receivedData).toEqual(expectedDataPlain);
 });

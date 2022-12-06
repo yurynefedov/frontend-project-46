@@ -1,4 +1,4 @@
-const expectedDataPlain = `{
+const expectedData = `{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -7,4 +7,4 @@ const expectedDataPlain = `{
   + verbose: true
 }`;
 
-export default expectedDataPlain;
+export default expectedData;
