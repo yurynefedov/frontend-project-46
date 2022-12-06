@@ -46,10 +46,18 @@ Comparing two plain yaml files:
 
 [![asciicast](https://asciinema.org/a/541826.svg)](https://asciinema.org/a/541826)
 
-Comparing two nested json files:
+Comparing two nested json files (output in stylish format):
 
 [![asciicast](https://asciinema.org/a/543053.svg)](https://asciinema.org/a/543053)
 
-Comparing two nested yaml files:
+Comparing two nested yaml files (output in stylish format):
 
 [![asciicast](https://asciinema.org/a/543056.svg)](https://asciinema.org/a/543056)
+
+Comparing two nested json files (output in plain format):
+
+[![asciicast](https://asciinema.org/a/543109.svg)](https://asciinema.org/a/543109)
+
+Comparing two nested yaml files (output in plain format):
+
+[![asciicast](https://asciinema.org/a/543111.svg)](https://asciinema.org/a/543111)
