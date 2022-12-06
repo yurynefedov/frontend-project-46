@@ -1,34 +1,55 @@
-const stylish = (diffTree) => {
-  const result = [];
-  diffTree.forEach((data) => {
-    const {
-      key,
-      value,
-      initialValue,
-      amendedValue,
-      status,
-    } = data;
+import _ from 'lodash';
 
-    switch (status) {
-      case 'added':
-        result.push(`  + ${key}: ${value}`);
-        break;
-      case 'deleted':
-        result.push(`  - ${key}: ${value}`);
-        break;
-      case 'unmodified':
-        result.push(`    ${key}: ${value}`);
-        break;
-      case 'modified':
-        result.push(`  - ${key}: ${initialValue}`);
-        result.push(`  + ${key}: ${amendedValue}`);
-        break;
-      default:
-        throw new Error(`Unknown status for property '${key}'`);
-    }
-  });
+const getIndent = (depth = 1, spacesCount = 4) => ' '.repeat(depth * spacesCount - 2);
 
-  return `{\n${result.join('\n')}\n}`;
+const markers = {
+  added: '+ ',
+  deleted: '- ',
+  unmodified: '  ',
+  empty: '  ',
 };
 
-export default stylish;
+const stringify = (node, depth) => {
+  if (!_.isObject(node)) {
+    return String(node);
+  }
+
+  const lines = Object
+    .entries(node)
+    .map(([key, value]) => `${getIndent(depth + 1)}${markers.empty}${key}: ${stringify(value, depth + 1)}`);
+
+  return `{\n${lines.join('\n')}\n${getIndent(depth)}  }`;
+};
+
+const renderStylish = (diffTree) => {
+  const iter = (node, depth) => {
+    const lines = node.map((element) => {
+      const {
+        key,
+        value,
+        initialValue,
+        amendedValue,
+        children,
+        status,
+      } = element;
+
+      switch (status) {
+        case 'nested':
+          return `${getIndent(depth)}${markers.empty}${key}: {\n${iter(children, depth + 1)}\n${getIndent(depth)}  }`;
+        case 'modified':
+          return [`${getIndent(depth)}${markers.deleted}${key}: ${stringify(initialValue, depth)}`,
+            `${getIndent(depth)}${markers.added}${key}: ${stringify(amendedValue, depth)}`].join('\n');
+        case 'added':
+        case 'deleted':
+        case 'unmodified':
+          return `${getIndent(depth)}${markers[status]}${key}: ${stringify(value, depth)}`;
+        default:
+          throw new Error(`Invalid status '${status}' of property '${key}'`);
+      }
+    });
+    return lines.join('\n');
+  };
+  return `{\n${iter(diffTree, 1)}\n}`;
+};
+
+export default renderStylish;
