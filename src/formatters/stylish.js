@@ -23,7 +23,7 @@ const stringify = (node, depth) => {
 
 const renderStylish = (diffTree) => {
   const iter = (node, depth) => {
-    const lines = node.map((element) => {
+    const lines = node.flatMap((element) => {
       const {
         key,
         value,
@@ -38,7 +38,7 @@ const renderStylish = (diffTree) => {
           return `${getIndent(depth)}${markers.empty}${key}: {\n${iter(children, depth + 1)}\n${getIndent(depth)}  }`;
         case 'modified':
           return [`${getIndent(depth)}${markers.deleted}${key}: ${stringify(initialValue, depth)}`,
-            `${getIndent(depth)}${markers.added}${key}: ${stringify(amendedValue, depth)}`].join('\n');
+            `${getIndent(depth)}${markers.added}${key}: ${stringify(amendedValue, depth)}`];
         case 'added':
         case 'deleted':
         case 'unmodified':
