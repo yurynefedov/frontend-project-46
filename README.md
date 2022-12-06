@@ -45,3 +45,11 @@ Comparing two plain json files:
 Comparing two plain yaml files:
 
 [![asciicast](https://asciinema.org/a/541826.svg)](https://asciinema.org/a/541826)
+
+Comparing two nested json files:
+
+[![asciicast](https://asciinema.org/a/543053.svg)](https://asciinema.org/a/543053)
+
+Comparing two nested yaml files:
+
+[![asciicast](https://asciinema.org/a/543056.svg)](https://asciinema.org/a/543056)
