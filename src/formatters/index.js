@@ -1,9 +1,12 @@
-import stylish from './stylish.js';
+import renderStylish from './stylish.js';
+import renderPlain from './plain.js';
 
 const render = (diffTree, format) => {
   switch (format) {
     case 'stylish':
-      return stylish(diffTree);
+      return renderStylish(diffTree);
+    case 'plain':
+      return renderPlain(diffTree);
     default:
       throw new Error(`Sorry, the '${format}' format is not supported`);
   }
