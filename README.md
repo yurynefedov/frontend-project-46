@@ -4,13 +4,16 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4b7cddd0c9831da76551/test_coverage)](https://codeclimate.com/github/yurynefedov/frontend-project-46/test_coverage)
 
 # "Difference Generator"
-Difference Generator is a console utility that generates differences between configuration of two JSON or YML files. The output might be customized using --format option.
+
+## Description
+
+Difference Generator is a console utility that compares two configuration files and shows a difference. The output format might be customized by user.
 
 The details of setup and usage are provided below.
 
 ## Setup
 
-:exclamation: Before proceeding with the setup, please, make sure you have the latest stable version of Node.js installed.
+Before proceeding with the setup, please, make sure you have Node.js >=16 installed.
 
 ### 1. Clone this repository on your computer
 
@@ -23,20 +26,75 @@ Cloning with HTTPS URLs:
 git clone https://github.com/yurynefedov/frontend-project-46.git 
 ```
 
-### 2. Run the following commands while you are in root directory:
+### 2. Run the following commands while you are in the root directory:
 
 ```
-make install 
-```
-```
+make install
 npm link 
 ```
 
 ## Usage
 
-...Work in progress...
+### Manual
 
-## Demos
+Run `gendiff --help` or `gendiff -h` for manual.
+
+    gendiff -h
+    Usage: gendiff [options] <filepath1> <filepath2>
+
+    Compares two configuration files and shows a difference.
+
+    Options:
+      -V, --version        output the version number
+      -f, --format <type>  output format
+      -h, --help           display help for command
+
+### Files and filepaths
+
+The utility currently support the following file formats:
+
+- JSON
+- YAML
+
+To generate the difference you need to provide absolute or relative paths to both files, for instance:
+
+```
+gendiff __fixtures__/files/file1.json __fixtures__/files/file2.json
+```
+
+### Output formats
+
+The following types of output format are available:
+
+- stylish (default)
+- plain
+- JSON
+
+You can specify a formatter using the --format or -f flag on the command line. For example, --f json uses the JSON formatter.
+
+Please note that 'stylish' is a format by default, therefore, commands below return the same output:
+```
+gendiff <filepath1> <filepath2>
+
+gendiff -f stylish <filepath1> <filepath2>
+```
+
+### Output examples
+
+Output in stylish format:
+
+[![asciicast](https://asciinema.org/a/543053.svg)](https://asciinema.org/a/543053)
+
+Output in plain format:
+
+[![asciicast](https://asciinema.org/a/543111.svg)](https://asciinema.org/a/543111)
+
+Output in JSON format:
+
+[![asciicast](https://asciinema.org/a/543395.svg)](https://asciinema.org/a/543395)
+
+<!--
+## All demos
 
 Comparing two plain json files:
 
@@ -69,3 +127,4 @@ Comparing two nested json files (output in json format):
 Comparing two nested yaml files (output in json format):
 
 [![asciicast](https://asciinema.org/a/543395.svg)](https://asciinema.org/a/543395)
+-->
