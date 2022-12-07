@@ -4,6 +4,7 @@ import genDiff from '../src/index.js';
 import expectedData from '../__fixtures__/test-data/expected.js';
 import expectedDataStylish from '../__fixtures__/test-data/nested/expected-stylish.js';
 import expectedDataPlain from '../__fixtures__/test-data/nested/expected-plain.js';
+import expectedDataJSON from '../__fixtures__/test-data/nested/expected-json.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,12 +23,12 @@ const jsonNested2 = getPathToFixturesFiles('nested2.json');
 const yamlNested1 = getPathToFixturesFiles('nested1.yaml');
 const yamlNested2 = getPathToFixturesFiles('nested2.yaml');
 
-test('Get difference of two plain json files', () => {
+test('Get difference of two plain json files, default format', () => {
   const receivedData = genDiff(jsonFile1, jsonFile2);
   expect(receivedData).toEqual(expectedData);
 });
 
-test('Get difference of two plain yaml files', () => {
+test('Get difference of two plain yaml files, default format', () => {
   const receivedData = genDiff(yamlFile1, yamlFile2);
   expect(receivedData).toEqual(expectedData);
 });
@@ -50,4 +51,14 @@ test('Get difference of two nested json files, plain format', () => {
 test('Get difference of two nested yaml files, plain format', () => {
   const receivedData = genDiff(yamlNested1, yamlNested2, 'plain');
   expect(receivedData).toEqual(expectedDataPlain);
+});
+
+test('Get difference of two nested json files, json format', () => {
+  const receivedData = genDiff(jsonNested1, jsonNested2, 'json');
+  expect(receivedData).toEqual(expectedDataJSON);
+});
+
+test('Get difference of two nested yaml files, json format', () => {
+  const receivedData = genDiff(yamlNested1, yamlNested2, 'json');
+  expect(receivedData).toEqual(expectedDataJSON);
 });
