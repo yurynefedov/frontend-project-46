@@ -61,3 +61,11 @@ Comparing two nested json files (output in plain format):
 Comparing two nested yaml files (output in plain format):
 
 [![asciicast](https://asciinema.org/a/543111.svg)](https://asciinema.org/a/543111)
+
+Comparing two nested json files (output in json format):
+
+[![asciicast](https://asciinema.org/a/543394.svg)](https://asciinema.org/a/543394)
+
+Comparing two nested yaml files (output in json format):
+
+[![asciicast](https://asciinema.org/a/543395.svg)](https://asciinema.org/a/543395)
