@@ -25,12 +25,7 @@ const renderStylish = (diffTree) => {
   const iter = (node, depth) => {
     const lines = node.flatMap((element) => {
       const {
-        key,
-        value,
-        initialValue,
-        amendedValue,
-        children,
-        status,
+        key, value, initialValue, amendedValue, children, status,
       } = element;
 
       switch (status) {

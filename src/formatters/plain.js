@@ -9,12 +9,7 @@ const renderPlain = (diffTree) => {
   const iter = (node, path) => {
     const lines = node.flatMap((element) => {
       const {
-        key,
-        value,
-        initialValue,
-        amendedValue,
-        children,
-        status,
+        key, value, initialValue, amendedValue, children, status,
       } = element;
 
       const currentPath = path === '' ? `${key}` : `${path}.${key}`;
