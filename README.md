@@ -83,48 +83,12 @@ gendiff -f stylish <filepath1> <filepath2>
 
 Output in stylish format:
 
-[![asciicast](https://asciinema.org/a/543053.svg)](https://asciinema.org/a/543053)
+[![asciicast](https://asciinema.org/a/545011.svg)](https://asciinema.org/a/545011)
 
 Output in plain format:
 
-[![asciicast](https://asciinema.org/a/543111.svg)](https://asciinema.org/a/543111)
+[![asciicast](https://asciinema.org/a/545014.svg)](https://asciinema.org/a/545014)
 
 Output in JSON format:
 
-[![asciicast](https://asciinema.org/a/543395.svg)](https://asciinema.org/a/543395)
-
-<!--
-## All demos
-
-Comparing two plain json files:
-
-[![asciicast](https://asciinema.org/a/541298.svg)](https://asciinema.org/a/541298)
-
-Comparing two plain yaml files:
-
-[![asciicast](https://asciinema.org/a/541826.svg)](https://asciinema.org/a/541826)
-
-Comparing two nested json files (output in stylish format):
-
-[![asciicast](https://asciinema.org/a/543053.svg)](https://asciinema.org/a/543053)
-
-Comparing two nested yaml files (output in stylish format):
-
-[![asciicast](https://asciinema.org/a/543056.svg)](https://asciinema.org/a/543056)
-
-Comparing two nested json files (output in plain format):
-
-[![asciicast](https://asciinema.org/a/543109.svg)](https://asciinema.org/a/543109)
-
-Comparing two nested yaml files (output in plain format):
-
-[![asciicast](https://asciinema.org/a/543111.svg)](https://asciinema.org/a/543111)
-
-Comparing two nested json files (output in json format):
-
-[![asciicast](https://asciinema.org/a/543394.svg)](https://asciinema.org/a/543394)
-
-Comparing two nested yaml files (output in json format):
-
-[![asciicast](https://asciinema.org/a/543395.svg)](https://asciinema.org/a/543395)
--->
+[![asciicast](https://asciinema.org/a/545016.svg)](https://asciinema.org/a/545016)
