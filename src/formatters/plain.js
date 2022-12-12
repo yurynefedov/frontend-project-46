@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-const normalizeData = (value) => {
-  const flatData = _.isString(value) ? `'${value}'` : value;
+const stringify = (value) => {
+  const flatData = _.isString(value) ? `'${value}'` : String(value);
   return _.isObject(value) ? '[complex value]' : flatData;
 };
 
@@ -18,9 +18,9 @@ const renderPlain = (diffTree) => {
         case 'nested':
           return iter(children, currentPath);
         case 'modified':
-          return `Property '${currentPath}' was updated. From ${normalizeData(initialValue)} to ${normalizeData(amendedValue)}`;
+          return `Property '${currentPath}' was updated. From ${stringify(initialValue)} to ${stringify(amendedValue)}`;
         case 'added':
-          return `Property '${currentPath}' was added with value: ${normalizeData(value)}`;
+          return `Property '${currentPath}' was added with value: ${stringify(value)}`;
         case 'deleted':
           return `Property '${currentPath}' was removed`;
         case 'unmodified':
