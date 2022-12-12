@@ -8,19 +8,17 @@ const stringify = (value) => {
 const renderPlain = (diffTree) => {
   const iter = (node, path) => {
     const lines = node.flatMap((element) => {
-      const {
-        key, value, initialValue, amendedValue, children, status,
-      } = element;
+      const { key, status } = element;
 
       const currentPath = [...path, key];
 
       switch (status) {
         case 'nested':
-          return iter(children, currentPath);
+          return iter(element.children, currentPath);
         case 'modified':
-          return `Property '${currentPath.join('.')}' was updated. From ${stringify(initialValue)} to ${stringify(amendedValue)}`;
+          return `Property '${currentPath.join('.')}' was updated. From ${stringify(element.initialValue)} to ${stringify(element.amendedValue)}`;
         case 'added':
-          return `Property '${currentPath.join('.')}' was added with value: ${stringify(value)}`;
+          return `Property '${currentPath.join('.')}' was added with value: ${stringify(element.value)}`;
         case 'deleted':
           return `Property '${currentPath.join('.')}' was removed`;
         case 'unmodified':
