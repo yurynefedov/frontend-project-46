@@ -12,17 +12,17 @@ const renderPlain = (diffTree) => {
         key, value, initialValue, amendedValue, children, status,
       } = element;
 
-      const currentPath = path === '' ? `${key}` : `${path}.${key}`;
+      const currentPath = [...path, key];
 
       switch (status) {
         case 'nested':
           return iter(children, currentPath);
         case 'modified':
-          return `Property '${currentPath}' was updated. From ${stringify(initialValue)} to ${stringify(amendedValue)}`;
+          return `Property '${currentPath.join('.')}' was updated. From ${stringify(initialValue)} to ${stringify(amendedValue)}`;
         case 'added':
-          return `Property '${currentPath}' was added with value: ${stringify(value)}`;
+          return `Property '${currentPath.join('.')}' was added with value: ${stringify(value)}`;
         case 'deleted':
-          return `Property '${currentPath}' was removed`;
+          return `Property '${currentPath.join('.')}' was removed`;
         case 'unmodified':
           return [];
         default:
@@ -31,7 +31,7 @@ const renderPlain = (diffTree) => {
     });
     return lines.join('\n');
   };
-  return iter(diffTree, '');
+  return iter(diffTree, []);
 };
 
 export default renderPlain;
