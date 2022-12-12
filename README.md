@@ -59,7 +59,7 @@ The utility currently support the following file formats:
 To generate the difference you need to provide absolute or relative paths to both files, for instance:
 
 ```
-gendiff __fixtures__/files/file1.json __fixtures__/files/file2.json
+gendiff __fixtures__/before.json __fixtures__/after.json
 ```
 
 ### Output formats
@@ -68,7 +68,7 @@ The following types of output format are available:
 
 - stylish (default)
 - plain
-- JSON
+- json
 
 You can specify a formatter using the --format or -f flag on the command line. For example, --f json uses the JSON formatter.
 
@@ -89,6 +89,6 @@ Output in plain format:
 
 [![asciicast](https://asciinema.org/a/545014.svg)](https://asciinema.org/a/545014)
 
-Output in JSON format:
+Output in json format:
 
 [![asciicast](https://asciinema.org/a/545016.svg)](https://asciinema.org/a/545016)
