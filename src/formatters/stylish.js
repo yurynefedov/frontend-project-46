@@ -24,20 +24,18 @@ const stringify = (node, depth) => {
 const renderStylish = (diffTree) => {
   const iter = (node, depth) => {
     const lines = node.flatMap((element) => {
-      const {
-        key, value, initialValue, amendedValue, children, status,
-      } = element;
+      const { key, status } = element;
 
       switch (status) {
         case 'nested':
-          return `${getIndent(depth)}${markers.empty}${key}: {\n${iter(children, depth + 1)}\n${getIndent(depth)}  }`;
+          return `${getIndent(depth)}${markers.empty}${key}: {\n${iter(element.children, depth + 1)}\n${getIndent(depth)}  }`;
         case 'modified':
-          return [`${getIndent(depth)}${markers.deleted}${key}: ${stringify(initialValue, depth)}`,
-            `${getIndent(depth)}${markers.added}${key}: ${stringify(amendedValue, depth)}`];
+          return [`${getIndent(depth)}${markers.deleted}${key}: ${stringify(element.initialValue, depth)}`,
+            `${getIndent(depth)}${markers.added}${key}: ${stringify(element.amendedValue, depth)}`];
         case 'added':
         case 'deleted':
         case 'unmodified':
-          return `${getIndent(depth)}${markers[status]}${key}: ${stringify(value, depth)}`;
+          return `${getIndent(depth)}${markers[status]}${key}: ${stringify(element.value, depth)}`;
         default:
           throw new Error(`Invalid status '${status}' of property '${key}'`);
       }
