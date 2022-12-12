@@ -1,64 +1,41 @@
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
-import expectedData from '../__fixtures__/test-data/expected.js';
-import expectedDataStylish from '../__fixtures__/test-data/nested/expected-stylish.js';
-import expectedDataPlain from '../__fixtures__/test-data/nested/expected-plain.js';
-import expectedDataJSON from '../__fixtures__/test-data/nested/expected-json.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getPathToFixturesFiles = (filename) => path.join(__dirname, '..', '__fixtures__', 'files', filename);
+const getPathToFixturesFiles = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFileData = (filename) => fs.readFileSync(getPathToFixturesFiles(filename), 'utf-8');
 
-const jsonFile1 = getPathToFixturesFiles('file1.json');
-const jsonFile2 = getPathToFixturesFiles('file2.json');
+const testData1 = ['json', 'yaml'];
 
-const yamlFile1 = getPathToFixturesFiles('file1.yaml');
-const yamlFile2 = getPathToFixturesFiles('file2.yaml');
+const testData2 = [
+  ['json', 'stylish'],
+  ['json', 'plain'],
+  ['json', 'json'],
+  ['yaml', 'stylish'],
+  ['yaml', 'plain'],
+  ['yaml', 'json'],
+];
 
-const jsonNested1 = getPathToFixturesFiles('nested1.json');
-const jsonNested2 = getPathToFixturesFiles('nested2.json');
+test.each(testData1)('Get difference of two %s files, default format', (extension) => {
+  const path1 = getPathToFixturesFiles(`before.${extension}`);
+  const path2 = getPathToFixturesFiles(`after.${extension}`);
 
-const yamlNested1 = getPathToFixturesFiles('nested1.yaml');
-const yamlNested2 = getPathToFixturesFiles('nested2.yaml');
+  const receivedData = genDiff(path1, path2);
+  const expectedData = readFileData('stylish.txt');
 
-test('Get difference of two plain json files, default format', () => {
-  const receivedData = genDiff(jsonFile1, jsonFile2);
-  expect(receivedData).toEqual(expectedData);
+  expect(receivedData).toBe(expectedData);
 });
 
-test('Get difference of two plain yaml files, default format', () => {
-  const receivedData = genDiff(yamlFile1, yamlFile2);
-  expect(receivedData).toEqual(expectedData);
-});
+test.each(testData2)('Get difference of two %s files, %s format', (extension, outputFormat) => {
+  const path1 = getPathToFixturesFiles(`before.${extension}`);
+  const path2 = getPathToFixturesFiles(`after.${extension}`);
 
-test('Get difference of two nested json files, stylish format', () => {
-  const receivedData = genDiff(jsonNested1, jsonNested2, 'stylish');
-  expect(receivedData).toEqual(expectedDataStylish);
-});
+  const receivedData = genDiff(path1, path2, outputFormat);
+  const expectedData = readFileData(`${outputFormat}.txt`);
 
-test('Get difference of two nested yaml files, stylish format', () => {
-  const receivedData = genDiff(yamlNested1, yamlNested2, 'stylish');
-  expect(receivedData).toEqual(expectedDataStylish);
-});
-
-test('Get difference of two nested json files, plain format', () => {
-  const receivedData = genDiff(jsonNested1, jsonNested2, 'plain');
-  expect(receivedData).toEqual(expectedDataPlain);
-});
-
-test('Get difference of two nested yaml files, plain format', () => {
-  const receivedData = genDiff(yamlNested1, yamlNested2, 'plain');
-  expect(receivedData).toEqual(expectedDataPlain);
-});
-
-test('Get difference of two nested json files, json format', () => {
-  const receivedData = genDiff(jsonNested1, jsonNested2, 'json');
-  expect(receivedData).toEqual(expectedDataJSON);
-});
-
-test('Get difference of two nested yaml files, json format', () => {
-  const receivedData = genDiff(yamlNested1, yamlNested2, 'json');
-  expect(receivedData).toEqual(expectedDataJSON);
+  expect(receivedData).toBe(expectedData);
 });
