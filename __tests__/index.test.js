@@ -22,6 +22,10 @@ test.each(testData)('Get difference of two %s files, %s format', (extension, out
   const path1 = getPathToFixturesFiles(`before.${extension}`);
   const path2 = getPathToFixturesFiles(`after.${extension}`);
 
+  // Checking default output format (function call without output format as an argument)
   expect(genDiff(path1, path2)).toBe(readFileData('stylish.txt'));
+  // Checking generation of correct json file at reverse conversion
+  expect(() => JSON.parse(genDiff(path1, path2, 'json'))).not.toThrow();
+  // Checking available output formats
   expect(genDiff(path1, path2, outputFormat)).toBe(readFileData(`${outputFormat}.txt`));
 });
