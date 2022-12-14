@@ -1,8 +1,10 @@
 import _ from 'lodash';
 
 const stringify = (value) => {
-  const flatData = _.isString(value) ? `'${value}'` : String(value);
-  return _.isObject(value) ? '[complex value]' : flatData;
+  if (_.isObject(value)) {
+    return '[complex value]';
+  }
+  return _.isString(value) ? `'${value}'` : String(value);
 };
 
 const renderPlain = (diffTree) => {
