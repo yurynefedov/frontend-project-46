@@ -8,7 +8,7 @@ const parseData = (data, dataFormat) => {
     case 'yaml':
       return yaml.load(data);
     default:
-      throw new Error('Sorry, the data format is not supported');
+      throw new Error(`Sorry, the '${dataFormat}' data format is not supported`);
   }
 };
 
